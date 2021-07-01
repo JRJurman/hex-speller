@@ -5,7 +5,7 @@
     "start": "parcel index.html --open",
     "build": "parcel build index.html",
     "test": "jest --watch",
-    "predeploy": "npm run build -- --public-url /tram-resume",
+    "predeploy": "npm run build -- --public-url /hex-speller",
     "deploy": "gh-pages -d dist -b gh-pages"
   },
   "dependencies": {

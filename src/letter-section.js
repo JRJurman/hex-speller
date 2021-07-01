@@ -1,6 +1,5 @@
 import { registerHtml, useGlobalStore } from 'tram-one'
 import LetterHive from './letter-hive'
-import checkAnswer from './functions/checkAnswer'
 import submitAnswer from './functions/submitAnswer'
 
 const html = registerHtml({

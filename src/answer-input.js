@@ -7,19 +7,14 @@ export default (props, children) => {
 	const workingAnswer = useGlobalStore('working-answer')
 
 	const onInputSubmit = (event) => {
-		workingAnswer.value = event.target.value
-		console.log(workingAnswer.value)
+		console.log('event triggered!')
 		if (event.keyCode == 13) {
 			submitAnswer()
 		}
-	}
-
-	const onUpdateAnswer = (event) => {
 		workingAnswer.value = event.target.value
-		console.log(workingAnswer.value)
 	}
 
 	return html`
-		<input class="answer-input" type="text" value=${workingAnswer.value} onkeypress=${onInputSubmit} >
+		<input class="answer-input" type="text" value=${workingAnswer.value} onkeyup=${onInputSubmit} onchange=${onInputSubmit} >
 	`
 }
