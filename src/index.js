@@ -1,10 +1,9 @@
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-import { registerHtml, start, useEffect } from 'tram-one'
+import { registerHtml, start, useEffect, useGlobalStore } from 'tram-one'
+import AnswerSection from './answer-section'
 import AppHeader from './app-header'
-import AppSummary from './app-summary'
-import appTaskDescription from './app-task-description'
-import AppTaskList from './app-task-list'
+import LetterSection from './letter-section'
 import './styles.css'
 
 /**
@@ -14,22 +13,42 @@ import './styles.css'
 
 const html = registerHtml({
 	'app-header': AppHeader,
-	'app-summary': AppSummary,
-	'app-task-list': AppTaskList,
-	'app-task-description': appTaskDescription,
+	'letter-section': LetterSection,
+	'answer-section': AnswerSection
 })
 
 const home = () => {
-	useEffect(() => {
-		console.log('Thanks for using Tram-One!')
+	useGlobalStore('letters', {
+		consants: ['F', 'B', 'C', 'D'],
+		required: 'G',
+		vowels: ['A', 'E']
 	})
+
+	useGlobalStore('answers', [])
+
+	useGlobalStore('shuffle', {shuffleValue: 0})
+
+	useGlobalStore('working-answer', {value: ''})
+
+	/**
+	 * focus the input if someone clicks on the background
+	 */
+	const focusInput = () => {
+		// document.querySelector('.answer-input').focus()
+	}
+
 	return html`
-		<main>
-			<app-header>hex-speller checklist</app-header>
-			<app-summary />
-			<app-task-list />
-			<hr />
-			<app-task-description />
+		<main onclick=${focusInput}>
+			<app-header>hex-speller</app-header>
+			<section class="main-section">
+				<answer-section />
+				<letter-section />
+			</section>
+			<footer>
+				Created by <a href="https://jrjurman.com">Jesse Jurman</a><br/>
+				Written in <a href="https://tram-one.io">Tram-One</a><br/>
+				Inspired by <a href="https://www.nytimes.com/puzzles/spelling-bee">The New York Times' Spelling Bee</a>
+			</footer>
 		</main>
 	`
 }

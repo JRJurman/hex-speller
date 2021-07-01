@@ -4,7 +4,9 @@
   "scripts": {
     "start": "parcel index.html --open",
     "build": "parcel build index.html",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "predeploy": "npm run build -- --public-url /tram-resume",
+    "deploy": "gh-pages -d dist -b gh-pages"
   },
   "dependencies": {
     "@babel/core": "^7.12.16",
