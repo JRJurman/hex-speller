@@ -7,6 +7,7 @@ const html = registerHtml({
 
 export default (props, children) => {
 	const answers = useGlobalStore('answers')
+	const error = useGlobalStore('error')
 
 	if (!answers) return ''
 
@@ -21,12 +22,13 @@ export default (props, children) => {
 
 	return html`
 		<section class="answer-section">
-			<p>
-			</p>
-			<select>
+			<select class="answer-section-select">
 				<option>${answersInfo}</option>
 				${answerRows}
 			</select>
+			<p class="answer-section-error">
+				${error.value}
+			</p>
 			<answer-input />
 		</section>
 	`

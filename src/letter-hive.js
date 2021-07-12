@@ -16,6 +16,7 @@ export default (props, children) => {
 	const letters = useGlobalStore('letters')
 	const workingAnswer = useGlobalStore('working-answer')
 	const shuffle = useGlobalStore('shuffle')
+	const error = useGlobalStore('error')
 
 	if (!letters) {
 		return ''
@@ -34,6 +35,7 @@ export default (props, children) => {
 
 	const onSelectHex = (letter) => () => {
 		workingAnswer.value = workingAnswer.value + letter
+		error.value = ''
 	}
 
 	return svg`

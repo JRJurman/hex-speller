@@ -30,21 +30,20 @@ const home = () => {
 
 	useGlobalStore('working-answer', {value: ''})
 
-	/**
-	 * focus the input if someone clicks on the background
-	 */
-	const focusInput = () => {
-		// document.querySelector('.answer-input').focus()
-	}
+	useGlobalStore('error', {value: ''})
 
 	return html`
-		<main onclick=${focusInput}>
+		<main>
 			<app-header>hex-speller</app-header>
 			<section class="main-section">
 				<answer-section />
 				<letter-section />
 			</section>
 			<footer>
+				Rules: Create words that are four or more letters.
+				Words must only use letters in the grid,
+				and must	include the center letter.<br/>
+				<br/>
 				Created by <a href="https://jrjurman.com">Jesse Jurman</a><br/>
 				Written in <a href="https://tram-one.io">Tram-One</a><br/>
 				Inspired by <a href="https://www.nytimes.com/puzzles/spelling-bee">The New York Times' Spelling Bee</a>

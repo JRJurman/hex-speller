@@ -9,6 +9,7 @@ const html = registerHtml({
 export default (props, children) => {
 	const shuffle = useGlobalStore('shuffle')
 	const workingAnswer = useGlobalStore('working-answer')
+	const error = useGlobalStore('error')
 
 	const onAnswer = () => {
 		submitAnswer()
@@ -21,6 +22,7 @@ export default (props, children) => {
 
 	const onClear = () => {
 		workingAnswer.value = ''
+		error.value = ''
 	}
 
 	return html`

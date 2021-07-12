@@ -20,7 +20,7 @@ export default ({offset = [0,0], letter="A", required = false, onclick}, childre
 	const svgPoints = points.map(coordToSVGPoint).join(' ')
 
 	return svg`
-		<g class="letter-hex" onclick=${onclick}>
+		<g class="letter-hex" value="${letter} ${required ? 'required' : ''}" tabindex=0 role="button" onclick=${onclick} onkeypress=${onclick}>
 			<polygon class="letter-hex-polygon ${required ? 'required' : ''}" points=${svgPoints}>
 			</polygon>
 			<text class="letter-hex-letter" fill="white" x="${(width/2) + offset[0]}" y="${(height/2) + 20 + offset[1]}" text-anchor="middle">${letter}</text>

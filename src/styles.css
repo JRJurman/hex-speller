@@ -17,6 +17,11 @@ a {
 	color: inherit;
 }
 
+main {
+	max-width: 500px;
+	margin: auto;
+}
+
 .main-section {
 	display:flex;
 	flex-direction: column;
@@ -26,16 +31,29 @@ a {
 	margin: 1em;
 }
 
+.letter-hex:focus {
+	outline: none;
+}
+
 .letter-hex-letter {
 	font-size: 3em;
 }
 
 .answer-input {
-	font-size: 1em;
+	font-size: 1.2em;
 }
 
 .answer-section {
 	margin: auto;
+}
+
+.answer-section-select {
+	margin-top: 1em;
+}
+
+.answer-section-error {
+	display: block;
+	font-size: 0.8em;
 }
 
 .letter-section {
@@ -70,12 +88,12 @@ polygon, text {
 	fill: #4a4a4a;
 }
 
-g:hover polygon {
+.letter-hex:hover .letter-hex-polygon, .letter-hex:focus .letter-hex-polygon {
 	fill: #5c5c5c;
 }
 
-g:hover polygon.required {
-	fill: #a88c00;
+.letter-hex:hover .letter-hex-polygon.required, .letter-hex:focus .letter-hex-polygon.required {
+	fill: #99841b;
 }
 
 select {
@@ -95,6 +113,5 @@ input[type="text"] {
   border-bottom: solid 2px #5c5c5c;
   outline: 0;
   background: none;
-  font-size: 1em;
   padding: 0.25em;
 }
