@@ -17,12 +17,45 @@ const html = registerHtml({
 	'answer-section': AnswerSection
 })
 
+const getRandomLettersForDay = () => {
+	const today = new Date()
+	const date = today.getDate()
+	const month = today.getMonth()
+
+	const commonConsants = ['R','S','T','N','L'] // should have 1
+	const genericConstants = ['H','C','F','B','G','P','D','M'] // should have 2
+	const uncommonConsants = ['W','J','Q','V','Y','K','X','Z'] // should have 2
+	const vowels = ['A', 'E', 'I', 'O', 'U'] // should have 2
+
+	const shuffleBasedOnDate = (letterA, letterB) => {
+		return (letterA.charCodeAt(0)%date) - (letterB.charCodeAt(0)%month)
+	}
+
+	const shuffledCommonConsants = commonConsants.sort(shuffleBasedOnDate)
+	const shuffledGenericConstants = genericConstants.sort(shuffleBasedOnDate)
+	const shuffledUncommonConsants = uncommonConsants.sort(shuffleBasedOnDate)
+	const shuffledVowels = vowels.sort(shuffleBasedOnDate)
+
+	const pickedConstants = [
+		...shuffledCommonConsants.slice(0, 1),
+		...shuffledGenericConstants.slice(0, 2),
+		...shuffledUncommonConsants.slice(0, 2),
+	]
+
+	const pickedVowels = shuffledVowels.slice(0, 2)
+
+	// determine the required letter by picking one of the (common or generic) constants (based on date and month again)
+	const requiredIndex = (date+month)%3
+
+	return {
+		consants: pickedConstants.filter((letter, index) => index != requiredIndex),
+		required: pickedConstants[requiredIndex],
+		vowels: pickedVowels
+	}
+}
+
 const home = () => {
-	useGlobalStore('letters', {
-		consants: ['F', 'B', 'C', 'D'],
-		required: 'G',
-		vowels: ['A', 'E']
-	})
+	useGlobalStore('letters', getRandomLettersForDay())
 
 	useGlobalStore('answers', [])
 

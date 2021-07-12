@@ -54,6 +54,7 @@ main {
 .answer-section-error {
 	display: block;
 	font-size: 0.8em;
+	height: 1em;
 }
 
 .letter-section {
